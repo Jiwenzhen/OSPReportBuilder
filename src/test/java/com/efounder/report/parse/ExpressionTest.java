@@ -10,18 +10,16 @@ import com.efounder.report.parse.expression.SubExpression;
 public class ExpressionTest {
 
 	public static void main(String[] args) {
-		/*ExpressionManager expressionManager=new ExpressionManager();
+		ExpressionManager expressionManager=new ExpressionManager();
 		//expressionManager.registerExpression("sub", parse);
 		ScriptEngineManager factory = new ScriptEngineManager();
 		ScriptEngine engine = factory.getEngineByName("JavaScript");
 		try {
-			String result=(String) engine.eval("function a=new com.efounder.report.parse.expression.SubExpression().getName");
-			System.out.println(result);
+			String result=(String) engine.eval("var a='test';");
+			System.out.println(engine.get("a"));
 		} catch (ScriptException e) {
 			e.printStackTrace();
-		}*/
-		SubExpression test=new SubExpression();
-		System.out.println(test.getCode());
+		}
 	}
 
 }

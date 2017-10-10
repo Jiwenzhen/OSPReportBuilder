@@ -39,4 +39,7 @@ public class ScriptContext {
 		code.append("){").append(funName).append("OBJ").append(".call(");
 		code.append(params.substring(0,params.length()-1)).append(");}");
 	}
+	public ScriptEngine getScriptEngine(){
+		return engine;
+	}
 }

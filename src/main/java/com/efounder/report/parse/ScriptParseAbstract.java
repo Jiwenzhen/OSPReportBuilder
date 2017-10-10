@@ -2,17 +2,30 @@ package com.efounder.report.parse;
 
 import java.util.Map;
 
-import com.efounder.report.parse.expression.ExpressionManager;
+import javax.script.ScriptEngine;
+
 
 
 public abstract class ScriptParseAbstract {
 
-	private Map<String, IExpression> expressions;
+	private ScriptContext scriptContext;
+	private ScriptEngine engine;
+	
 	public ScriptParseAbstract() {
-		expressions=new ExpressionManager().getExpressions();
+		scriptContext=ScriptContext.getInstance();
+		engine=scriptContext.getScriptEngine();
 	}
-	public Map<String, IExpression> getExpressions(){
-		return expressions;
+	
+	
+	public  Object parseScript(String script,Map<String, Object>param){
+		StringBuffer code=new StringBuffer();
+		StringBuffer paramCode=new StringBuffer();
+		for(String name:param.keySet()){
+			paramCode.append("var ").append(name).append("=");
+			paramCode.append(param.get(name)).append(";");
+		}
+		code.append("function(){").append(paramCode.toString());
+		code.append("return ").append(script).append(";}();");
+		return param;
 	}
-	public abstract Object parseScript(String script,Map<String, Object>param);
 }
