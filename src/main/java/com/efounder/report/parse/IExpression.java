@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface IExpression {
 
-	public void call(String ... args);
+	public Object call(String ... args);
 	public List<String> getParamList();
 }

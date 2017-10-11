@@ -6,12 +6,12 @@ import javax.script.ScriptEngine;
 
 
 
-public abstract class ScriptParseAbstract {
+public class ScriptParse {
 
 	private ScriptContext scriptContext;
 	private ScriptEngine engine;
 	
-	public ScriptParseAbstract() {
+	public ScriptParse() {
 		scriptContext=ScriptContext.getInstance();
 		engine=scriptContext.getScriptEngine();
 	}

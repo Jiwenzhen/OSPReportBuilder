@@ -3,8 +3,7 @@ package com.efounder.report.parse;
 
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
-
-import com.efounder.report.parse.expression.ExpressionManager;
+import javax.script.ScriptException;
 
 public class ScriptContext {
 
@@ -23,11 +22,12 @@ public class ScriptContext {
    	 	engine = factory.getEngineByName("JavaScript");
 	}
 	public void initContext(){
+		registExpression(expressionManager.getJSCode());
 		for(String key:expressionManager.getExpressions().keySet()){
-			addFuntion(key, expressionManager.getExpression(key));
+			registExpression(key, expressionManager.getExpression(key));
 		}
 	}
-	protected void addFuntion(String funName,IExpression expression){
+	protected void registExpression(String funName,IExpression expression){
 		engine.put(funName+"OBJ", expression);
 		StringBuffer code=new StringBuffer();
 		code.append("function ").append(funName).append("(");
@@ -38,6 +38,18 @@ public class ScriptContext {
 		code.append(params.substring(0,params.length()-1));
 		code.append("){").append(funName).append("OBJ").append(".call(");
 		code.append(params.substring(0,params.length()-1)).append(");}");
+		try {
+			engine.eval(code.toString());
+		} catch (ScriptException e) {
+			e.printStackTrace();
+		}
+	}
+	protected void registExpression(String code){
+		try {
+			engine.eval(code);
+		} catch (ScriptException e) {
+			e.printStackTrace();
+		}
 	}
 	public ScriptEngine getScriptEngine(){
 		return engine;
