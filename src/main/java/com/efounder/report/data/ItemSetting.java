@@ -5,6 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+* 属性配置最小单元 
+* @ClassName: ItemSetting  
+* @Description: TODO
+* @author GJX  
+* @date 2017年10月11日 下午6:15:00  
+*
+ */
 public class ItemSetting {
 
 	protected String type;

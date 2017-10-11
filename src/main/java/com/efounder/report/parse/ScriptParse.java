@@ -5,7 +5,14 @@ import java.util.Map;
 import javax.script.ScriptEngine;
 
 
-
+/**
+* 脚本解析器
+* @ClassName: ScriptParse  
+* @Description: TODO
+* @author GJX  
+* @date 2017年10月11日 下午6:20:36  
+*
+ */
 public class ScriptParse {
 
 	private ScriptContext scriptContext;

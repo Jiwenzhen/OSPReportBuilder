@@ -11,7 +11,14 @@ import org.dom4j.Element;
 import com.efounder.report.data.ItemSetting;
 import com.efounder.report.data.ReportSetting;
 
-
+/**
+* 配置文件解析器虚类
+* @ClassName: ConfigParseAbstract  
+* @Description: TODO
+* @author GJX  
+* @date 2017年10月11日 下午6:19:43  
+*
+ */
 public abstract class ConfigParseAbstract {
 
 	public ReportSetting parse(String config) throws Exception {

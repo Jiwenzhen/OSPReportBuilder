@@ -4,7 +4,7 @@ import java.util.List;
 
 
 /**
- * 报表配置类
+* 报表配置类
 * @ClassName: ReportSetting  
 * @Description: TODO
 * @author GJX  

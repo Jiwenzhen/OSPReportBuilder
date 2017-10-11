@@ -5,6 +5,14 @@ import java.util.List;
 
 import com.efounder.report.parse.IExpression;
 
+/**
+* 求和表达式
+* @ClassName: SubExpression  
+* @Description: TODO
+* @author GJX  
+* @date 2017年10月11日 下午6:19:28  
+*
+ */
 public class SubExpression implements IExpression {
 
 	@Override

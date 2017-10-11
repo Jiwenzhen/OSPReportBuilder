@@ -10,6 +10,14 @@ import org.dom4j.Element;
 import com.efounder.report.data.ItemSetting;
 import com.efounder.report.parse.ConfigParseAbstract;
 
+/**
+* MyReport配置文件解析器
+* @ClassName: MyReportConfigParse  
+* @Description: TODO
+* @author GJX  
+* @date 2017年10月11日 下午6:18:38  
+*
+ */
 public class MyReportConfigParse extends ConfigParseAbstract {
 
 	protected ItemSetting getPageHeaderSettings(Element root) {

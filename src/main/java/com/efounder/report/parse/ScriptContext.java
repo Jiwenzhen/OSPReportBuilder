@@ -5,6 +5,14 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
+/**
+* 脚本执行环境类 
+* @ClassName: ScriptContext  
+* @Description: TODO
+* @author GJX  
+* @date 2017年10月11日 下午6:20:16  
+*
+ */
 public class ScriptContext {
 
 	private ExpressionManager expressionManager;
