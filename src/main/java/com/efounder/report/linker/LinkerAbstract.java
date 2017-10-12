@@ -13,11 +13,13 @@ import com.efounder.report.parse.ScriptParse;
 * @date 2017年10月11日 下午6:17:37  
 *
  */
-public interface ILinker {
+public abstract class LinkerAbstract {
 
-	public ConfigParseAbstract getConfigParse();
-	public void registExpression();
-	public ScriptParse getScriptParse();
-	public ICompile getCompile();
-	public IBuilder getBuilder();
+	public LinkerAbstract() {
+	}
+	public abstract ConfigParseAbstract getConfigParse();
+	public abstract void registExpression();
+	public abstract ScriptParse getScriptParse();
+	public abstract ICompile getCompile();
+	public abstract IBuilder getBuilder();
 }

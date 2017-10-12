@@ -1,5 +1,7 @@
 package com.efounder.report.core;
 
+import com.efounder.report.linker.ILinker;
+
 /**
 * 报表主类
 * @ClassName: ReportBuilder  
@@ -10,4 +12,8 @@ package com.efounder.report.core;
  */
 public class ReportBuilder {
 
+	private ILinker linker;
+	public void setLinker(ILinker linker){
+		this.linker=linker;
+	}
 }
