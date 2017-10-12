@@ -12,5 +12,10 @@ import java.io.File;
  */
 public interface IBuilder {
 
+	/**
+	 * 根据HTML构建PDF文件
+	 * @param file 目标文件
+	 * @param html html源文件
+	 */
 	public void buildPDF(File file,String html);
 }

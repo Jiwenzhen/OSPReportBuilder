@@ -13,13 +13,8 @@ import java.util.Map;
  */
 public class ExpressionManager {
 
-	private static Map<String, IExpression> expressions;
-	private static StringBuffer jscode;
-	
-	public ExpressionManager() {
-		expressions=new HashMap<String, IExpression>();
-		jscode=new StringBuffer();
-	}
+	private static Map<String, IExpression> expressions=new HashMap<String, IExpression>();;
+	private static StringBuffer jscode=new StringBuffer();
 	
 	public void registerExpression(String name,IExpression parse){
 		expressions.put(name, parse);

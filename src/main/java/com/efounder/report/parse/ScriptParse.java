@@ -3,6 +3,7 @@ package com.efounder.report.parse;
 import java.util.Map;
 
 import javax.script.ScriptEngine;
+import javax.script.ScriptException;
 
 
 /**
@@ -27,12 +28,21 @@ public class ScriptParse {
 	public  Object parseScript(String script,Map<String, Object>param){
 		StringBuffer code=new StringBuffer();
 		StringBuffer paramCode=new StringBuffer();
-		for(String name:param.keySet()){
-			paramCode.append("var ").append(name).append("=");
-			paramCode.append(param.get(name)).append(";");
+		Object result=null;
+		if(param!=null){
+			for(String name:param.keySet()){
+				paramCode.append("var ").append(name).append("=");
+				paramCode.append(param.get(name)).append(";");
+			}
 		}
-		code.append("function(){").append(paramCode.toString());
-		code.append("return ").append(script).append(";}();");
-		return param;
+		
+		code.append("(function(){").append(paramCode.toString());
+		code.append("return ").append(script).append(";})();");
+		try {
+			result=engine.eval(code.toString());
+		} catch (ScriptException e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 }

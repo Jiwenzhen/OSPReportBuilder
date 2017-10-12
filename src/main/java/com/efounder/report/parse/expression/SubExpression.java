@@ -6,7 +6,7 @@ import java.util.List;
 import com.efounder.report.parse.IExpression;
 
 /**
-* 求和表达式
+* 求差表达式
 * @ClassName: SubExpression  
 * @Description: TODO
 * @author GJX  
@@ -22,7 +22,7 @@ public class SubExpression implements IExpression {
 
 	@Override
 	public List<String> getParamList() {
-		String[] params={"1","2"};
+		String[] params={"a","b"};
 		return Arrays.asList(params);
 	}
 

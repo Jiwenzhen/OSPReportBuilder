@@ -1,6 +1,11 @@
 package com.efounder.report.core;
 
-import com.efounder.report.linker.ILinker;
+import java.io.File;
+import java.util.UUID;
+
+import com.efounder.report.data.ReportSetting;
+import com.efounder.report.linker.LinkerAbstract;
+import com.efounder.report.parse.FileUtils;
 
 /**
 * 报表主类
@@ -12,8 +17,40 @@ import com.efounder.report.linker.ILinker;
  */
 public class ReportBuilder {
 
-	private ILinker linker;
-	public void setLinker(ILinker linker){
+	private LinkerAbstract linker;
+	private String tempPath;
+	/**
+	 * 设置连接器
+	 * @param linker
+	 */
+	public void setLinker(LinkerAbstract linker){
 		this.linker=linker;
 	}
+	/**
+	 * 设置缓存目录
+	 * @param path
+	 */
+	public void setTempPath(String path){
+		this.tempPath=path;
+	}
+	/**
+	 * 构建报表PDF
+	 * @param configPath 配置文件路径
+	 * @param data 数据
+	 * @return 生成报表文件路径
+	 */
+	public String buildReportPDF(String configPath,Object data){
+		String configContent=FileUtils.readFile(new File(configPath));
+		String targetFilePath = null;
+		try {
+			ReportSetting reportSetting=linker.getConfigParse().parse(configContent);
+			String targetCode =linker.getCompile().compile(reportSetting, data);
+			targetFilePath=tempPath+UUID.randomUUID();
+			linker.getBuilder().buildPDF(new File(targetFilePath), targetCode);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return targetFilePath;
+	}
+
 }

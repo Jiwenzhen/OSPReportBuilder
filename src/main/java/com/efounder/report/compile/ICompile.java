@@ -1,5 +1,8 @@
 package com.efounder.report.compile;
 
+import com.efounder.report.data.ReportSetting;
+import com.efounder.report.parse.ScriptParse;
+
 /**
 * 报表编译器	
 * @ClassName: ICompile  
@@ -10,6 +13,18 @@ package com.efounder.report.compile;
  */
 public interface ICompile {
 
-	public String compile(String config,Object data);
+	/**
+	 * 根据配置文件和数据编译成中间文件
+	 * @param config 配置文件类
+	 * @param data 数据
+	 * @return
+	 */
+	public String compile(ReportSetting config,Object data);
+	
+	/**
+	 * 设置脚本解析器
+	 * @param scriptParse
+	 */
+	public void setScriptParse(ScriptParse scriptParse);
 	
 }

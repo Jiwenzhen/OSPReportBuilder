@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 import com.efounder.report.build.IBuilder;
 import com.efounder.report.build.ItextpdfBuilder;
+import com.efounder.report.compile.HTMLCompiler;
 import com.efounder.report.compile.ICompile;
 import com.efounder.report.parse.ConfigParseAbstract;
 import com.efounder.report.parse.ExpressionManager;
@@ -21,11 +22,18 @@ import com.efounder.report.parse.expression.SubExpression;
 * @date 2017年10月12日 上午9:15:13  
 *
  */
-public class PartLinker implements ILinker {
+public class PartLinker extends LinkerAbstract {
 
+	private ConfigParseAbstract configParse;
+	private ScriptParse scriptParse;
+	private ICompile compiler;
+	private IBuilder builder;
 	@Override
 	public ConfigParseAbstract getConfigParse() {
-		return new MyReportConfigParse();
+		if(configParse==null){
+			configParse=new MyReportConfigParse();
+		}
+		return configParse;
 	}
 
 	@Override
@@ -50,17 +58,27 @@ public class PartLinker implements ILinker {
 
 	@Override
 	public ScriptParse getScriptParse() {
-		return new ScriptParse();
+		if(scriptParse==null){
+			scriptParse=new ScriptParse();
+		}
+		return scriptParse;
 	}
 
 	@Override
 	public ICompile getCompile() {
-		return null;
+		if(compiler==null){
+			compiler=new HTMLCompiler();
+			compiler.setScriptParse(getScriptParse());
+		}
+		return compiler;
 	}
 
 	@Override
 	public IBuilder getBuilder() {
-		return new ItextpdfBuilder();
+		if(builder==null){
+			builder=new ItextpdfBuilder();
+		}
+		return builder;
 	}
 
 }
