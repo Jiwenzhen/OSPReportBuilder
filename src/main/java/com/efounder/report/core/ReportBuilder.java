@@ -17,8 +17,8 @@ import com.efounder.report.parse.FileUtils;
  */
 public class ReportBuilder {
 
-	private LinkerAbstract linker;
-	private String tempPath;
+	protected LinkerAbstract linker;
+	protected String tempPath;
 	/**
 	 * 设置连接器
 	 * @param linker

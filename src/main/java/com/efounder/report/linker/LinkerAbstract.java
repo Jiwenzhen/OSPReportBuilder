@@ -1,7 +1,7 @@
 package com.efounder.report.linker;
 
 import com.efounder.report.build.IBuilder;
-import com.efounder.report.compile.ICompile;
+import com.efounder.report.compile.CompileAbstract;
 import com.efounder.report.parse.ConfigParseAbstract;
 import com.efounder.report.parse.ScriptParse;
 
@@ -37,7 +37,7 @@ public abstract class LinkerAbstract {
 	 * 设置编译器
 	 * @return
 	 */
-	public abstract ICompile getCompile();
+	public abstract CompileAbstract getCompile();
 	
 	/**
 	 * 设置构建器

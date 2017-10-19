@@ -51,10 +51,19 @@ public class ItemSetting {
 	}
 	
 	public void addChildren(ItemSetting children){
-		childrens.add(children);
+		if(children!=null){
+			childrens.add(children);
+		}
+		
 	}
 	
 	public void setChildrenList(List<ItemSetting> list){
 		this.childrens=list;
+	}
+	public List<ItemSetting> getChildrenList(){
+		return childrens;
+	}
+	public Map<String, String> getPropertys(){
+		return propertys;
 	}
 }

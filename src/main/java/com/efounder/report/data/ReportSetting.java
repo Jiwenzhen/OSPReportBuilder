@@ -1,6 +1,5 @@
 package com.efounder.report.data;
 
-import java.util.List;
 
 
 /**

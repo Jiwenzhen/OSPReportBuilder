@@ -154,10 +154,20 @@ public class MyReportConfigParse extends ConfigParseAbstract {
 	
 	protected ItemSetting parseItemSetting(Element element){
 		ItemSetting itemSetting=new ItemSetting();
-		String value = element.element("Value").getText();
-		String type = element.element("Type").getText();
+		String value = null;
+		String type = null;
+		if(element.element("Value") != null){
+			value= element.element("Value").getText();
+		}
+		if(element.element("Type") != null){
+			type = element.element("Type").getText();
+		}
+		
 		itemSetting.setValue(value);
 		itemSetting.setType(type);
+		if(element.element("Style")==null){
+			return itemSetting;
+		}
 		List<?> childrens = element.element("Style").elements();
 		for (Object children : childrens) {
 			String key = ((Element) children).getName();
