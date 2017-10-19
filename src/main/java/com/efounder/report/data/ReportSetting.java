@@ -16,13 +16,13 @@ public class ReportSetting extends ItemSetting{
 	private ItemSetting pageHeaderSetting;//报表头
 	private ItemSetting pageFooterSetting;//报表尾
 	
-	private List<ItemSetting> tableHeaderSetting;//表格头
-	private List<ItemSetting> tableColumnSetting;//表格列配置
-	private List<ItemSetting> tableDetailSetting;//表格主体
-	private List<ItemSetting> tableFooterSetting;//表格尾
+	private ItemSetting tableHeaderSetting;//表格头
+	private ItemSetting tableColumnSetting;//表格列配置
+	private ItemSetting tableDetailSetting;//表格主体
+	private ItemSetting tableFooterSetting;//表格尾
 	
-	private List<ItemSetting> tableGroupHeaderSetting;//分组头
-	private List<ItemSetting> tableGroupFooterSetting;//分组尾
+	private ItemSetting tableGroupHeaderSetting;//分组头
+	private ItemSetting tableGroupFooterSetting;//分组尾
 	
 	public ItemSetting getPageHeaderSetting() {
 		return pageHeaderSetting;
@@ -36,42 +36,42 @@ public class ReportSetting extends ItemSetting{
 	public void setPageFooterSetting(ItemSetting pageFooterSetting) {
 		this.pageFooterSetting = pageFooterSetting;
 	}
-	public List<ItemSetting> getTableHeaderSetting() {
+	public ItemSetting getTableHeaderSetting() {
 		return tableHeaderSetting;
 	}
-	public void setTableHeaderSetting(List<ItemSetting> tableHeaderSetting) {
+	public void setTableHeaderSetting(ItemSetting tableHeaderSetting) {
 		this.tableHeaderSetting = tableHeaderSetting;
 	}
-	public List<ItemSetting> getTableColumnSetting() {
+	public ItemSetting getTableColumnSetting() {
 		return tableColumnSetting;
 	}
-	public void setTableColumnSetting(List<ItemSetting> tableColumnSetting) {
+	public void setTableColumnSetting(ItemSetting tableColumnSetting) {
 		this.tableColumnSetting = tableColumnSetting;
 	}
-	public List<ItemSetting> getTableDetailSetting() {
+	public ItemSetting getTableDetailSetting() {
 		return tableDetailSetting;
 	}
-	public void setTableDetailSetting(List<ItemSetting> tableDetailSetting) {
+	public void setTableDetailSetting(ItemSetting tableDetailSetting) {
 		this.tableDetailSetting = tableDetailSetting;
 	}
-	public List<ItemSetting> getTableFooterSetting() {
+	public ItemSetting getTableFooterSetting() {
 		return tableFooterSetting;
 	}
-	public void setTableFooterSetting(List<ItemSetting> tableFooterSetting) {
+	public void setTableFooterSetting(ItemSetting tableFooterSetting) {
 		this.tableFooterSetting = tableFooterSetting;
 	}
-	public List<ItemSetting> getTableGroupHeaderSetting() {
+	public ItemSetting getTableGroupHeaderSetting() {
 		return tableGroupHeaderSetting;
 	}
-	public void setTableGroupHeaderSetting(List<ItemSetting> tableGroupHeaderSetting) {
+	public void setTableGroupHeaderSetting(ItemSetting tableGroupHeaderSetting) {
 		this.tableGroupHeaderSetting = tableGroupHeaderSetting;
 	}
-	public List<ItemSetting> getTableGroupFooterSetting() {
+	public ItemSetting getTableGroupFooterSetting() {
 		return tableGroupFooterSetting;
 	}
-	public void setTableGroupFooterSetting(List<ItemSetting> tableGroupFooterSetting) {
+	public void setTableGroupFooterSetting(ItemSetting tableGroupFooterSetting) {
 		this.tableGroupFooterSetting = tableGroupFooterSetting;
 	}
-	
+
 	
 }

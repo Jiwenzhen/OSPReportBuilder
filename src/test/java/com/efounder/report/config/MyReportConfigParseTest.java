@@ -9,7 +9,7 @@ import com.efounder.report.parse.config.MyReportConfigParse;
 public class MyReportConfigParseTest {
 
 	public static void main(String[] args) {
-		 String xml=FileUtils.readFile(new File("C:/Users/GJX/Desktop/ReportStyle.xml"));
+		 String xml=FileUtils.readFile(new File("E:\\temp\\ReportStyle.xml"));
 		 MyReportConfigParse parse=new MyReportConfigParse();
 		 try {
 			 ReportSetting reportSetting=parse.parse(xml);

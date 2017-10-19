@@ -20,93 +20,102 @@ import com.efounder.report.parse.ConfigParseAbstract;
  */
 public class MyReportConfigParse extends ConfigParseAbstract {
 
+	@Override
 	protected ItemSetting getPageHeaderSettings(Element root) {
-
-		ItemSetting pageHeaderSetting=new ItemSetting();
-		List<ItemSetting> rowSettings = new ArrayList<ItemSetting>();
-
 		Element pageHeaderSettings = root.element("PageHeaderSettings");
-		List<?> itemSettings = pageHeaderSettings.elements("ItemSetting");
-		for (Object itemSetting : itemSettings) {
-			Element rowSetting = (Element) itemSetting;
-			if ("CaptionRowSetting".equals(rowSetting.attributeValue("type"))) {
-				List<?> captionCellSettings = rowSetting.element("CaptionCellSettings").elements("ItemSetting");
-				ItemSetting irowSetting=new ItemSetting();
-				List<ItemSetting> cellSettings = new ArrayList<ItemSetting>();
-				for (Object captionCellSetting : captionCellSettings) {
-					Element cellSetting = (Element) captionCellSetting;
-					cellSettings.add(parseCaptionCellSetting(cellSetting));
-
-				}
-				irowSetting.setChildrenList(cellSettings);
-				rowSettings.add(irowSetting);
-			}
+		if(pageHeaderSettings==null){
+			return null;
 		}
-		pageHeaderSetting.setChildrenList(rowSettings);
+		List<?> rowsSetting=pageHeaderSettings.elements("ItemSetting");
+		ItemSetting pageHeaderSetting=new ItemSetting();
+		for(Object rowSetting:rowsSetting){
+			ItemSetting row=parseRowSetting((Element)rowSetting);
+			pageHeaderSetting.addChildren(row);
+		}
 		return pageHeaderSetting;
 	}
 
+	@Override
 	protected ItemSetting getPageFooterSettings(Element root) {
-		ItemSetting pageFooterSetting=new ItemSetting();
-		List<ItemSetting> footerSettings = new ArrayList<ItemSetting>();
-
-		Element pageFooterSettings = root.element("TableFooterSettings");
-		List<?> itemSettings = pageFooterSettings.elements("ItemSetting");
-		for (Object itemSetting : itemSettings) {
-			Element rowSetting = (Element) itemSetting;
-			if ("CaptionRowSetting".equals(rowSetting.attributeValue("type"))) {
-				List<?> captionCellSettings = rowSetting.element("CaptionCellSettings").elements("ItemSetting");
-				ItemSetting footerSetting=new ItemSetting();
-				List<ItemSetting> crowSetting = new ArrayList<ItemSetting>();
-				for (Object captionCellSetting : captionCellSettings) {
-					Element cellSetting = (Element) captionCellSetting;
-					crowSetting.add(parseCaptionCellSetting(cellSetting));
-
-				}
-				footerSetting.setChildrenList(crowSetting);
-				footerSettings.add(footerSetting);
-			}
+		Element pageFooterSettings = root.element("PageFooterSettings");
+		if(pageFooterSettings==null){
+			return null;
 		}
-		pageFooterSetting.setChildrenList(footerSettings);
-		return pageFooterSetting;
+		List<?> rowsSetting=pageFooterSettings.elements("ItemSetting");
+		ItemSetting pageHeaderSetting=new ItemSetting();
+		for(Object rowSetting:rowsSetting){
+			ItemSetting row=parseRowSetting((Element)rowSetting);
+			pageHeaderSetting.addChildren(row);
+		}
+		return pageHeaderSetting;
 	}
 
-	protected List<ItemSetting> getTableColumnSettings(Element root) {
-		List<ItemSetting> tableColumnSettings=new ArrayList<ItemSetting>();
-		
-		List<?> itemSettings = root.elements("ItemSetting");
-		for(Object itemSetting:itemSettings){
-			tableColumnSettings.add(parseTableColumnSetting((Element) itemSetting));
+	@Override
+	protected ItemSetting getTableColumnSettings(Element root) {
+		Element tableColumn = root.element("TableColumnSettings");
+		if(tableColumn==null){
+			return null;
 		}
-		return tableColumnSettings;
+		List<?> items=tableColumn.elements("ItemSetting");
+		ItemSetting tableColumnSetting=new ItemSetting();
+		for(Object item:items){
+			tableColumnSetting.addChildren(parseItemSetting((Element)item));
+		}
+		return tableColumnSetting;
 	}
 
-	protected List<ItemSetting> getTableHeaderSettings(Element root) {
-		List<ItemSetting> tableRowSettings=new ArrayList<ItemSetting>();
-		
-		List<?> itemSettings = root.elements("ItemSetting");
-		for (Object itemSetting : itemSettings) {
-			Element rowSetting = (Element) itemSetting;
-			if ("TableRowSetting".equals(rowSetting.attributeValue("type"))) {
-				List<?> tableCellSettings = rowSetting.element("TableCellSettings").elements("ItemSetting");
-				ItemSetting irowSetting=new ItemSetting();
-				List<ItemSetting> crowSetting = new ArrayList<ItemSetting>();
-				for (Object tableCellSetting : tableCellSettings) {
-					Element cellSetting = (Element) tableCellSetting;
-					crowSetting.add(parseTableCellSetting(cellSetting));
-				}
-				irowSetting.setChildrenList(crowSetting);
-				tableRowSettings.add(irowSetting);
-			}
+	@Override
+	protected ItemSetting getTableHeaderSettings(Element root) {
+		Element tableHeader = root.element("TableHeaderSettings");
+		if(tableHeader==null){
+			return null;
 		}
-		return tableRowSettings;
+		List<?> rowsSetting=tableHeader.elements("ItemSetting");
+		ItemSetting tableHeaderSetting=new ItemSetting();
+		for(Object rowSetting:rowsSetting){
+			ItemSetting row=parseRowSetting((Element)rowSetting);
+			tableHeaderSetting.addChildren(row);
+		}
+		return tableHeaderSetting;
 	}
 
-	public List<ItemSetting> getTableDetailSettings(Element root) {
+	@Override
+	public ItemSetting getTableDetailSettings(Element root) {
+		Element tableDetail = root.element("TableDetailSettings");
+		if(tableDetail==null){
+			return null;
+		}
+		List<?> rowsSetting=tableDetail.elements("ItemSetting");
+		ItemSetting tableDetailSetting=new ItemSetting();
+		for(Object rowSetting:rowsSetting){
+			ItemSetting row=parseRowSetting((Element)rowSetting);
+			tableDetailSetting.addChildren(row);
+		}
+		return tableDetailSetting;
+	}
+
+	@Override
+	public ItemSetting getTableFooterSettings(Element root) {
+		Element tableFooter = root.element("TableFooterSettings");
+		if(tableFooter==null){
+			return null;
+		}
+		List<?> rowsSetting=tableFooter.elements("ItemSetting");
+		ItemSetting tableFooterSetting=new ItemSetting();
+		for(Object rowSetting:rowsSetting){
+			ItemSetting row=parseRowSetting((Element)rowSetting);
+			tableFooterSetting.addChildren(row);
+		}
+		return tableFooterSetting;
+	}
+	
+	@Override
+	protected ItemSetting getTableGroupHeaderSetting(Element root) {
 		return null;
 	}
 
-	public List<ItemSetting> getTableFooterSettings(Element root) {
+	@Override
+	protected ItemSetting getTableGroupFooterSetting(Element root) {
 		return null;
 	}
 
@@ -124,61 +133,38 @@ public class MyReportConfigParse extends ConfigParseAbstract {
 		return propertys;
 	}
 
-	private ItemSetting parseCaptionCellSetting(Element element) {
-		if (!"CaptionCellSetting".equals(element.attributeValue("type"))) {
+	protected ItemSetting parseRowSetting(Element element) {
+		if(element==null){
 			return null;
 		}
-		ItemSetting cellSetting=new ItemSetting();
-		String value = element.element("Value").getText();
-		cellSetting.setValue(value);
-		cellSetting.setType("CaptionCellSetting");
-		List<?> childrens = element.element("Style").elements();
-		for (Object children : childrens) {
-			String key = ((Element) children).getName();
-			String pvalue = ((Element) children).getText();
-			cellSetting.addProperty(key, pvalue);
-		}
-		return cellSetting;
-	}
-	private ItemSetting parseTableCellSetting(Element element){
-		if (!"TableCellSetting".equals(element.attributeValue("type"))) {
+		List<?> tableRow = element.elements("ItemSetting");
+		if(tableRow.isEmpty()){
 			return null;
 		}
-		ItemSetting tableCellSetting=new ItemSetting();
-		String value = element.element("Value").getText();
-		tableCellSetting.setValue(value);
-		tableCellSetting.setType("TableCellSetting");
-		List<?> childrens = element.element("Style").elements();
-		for (Object children : childrens) {
-			String key = ((Element) children).getName();
-			String pvalue = ((Element) children).getText();
-			tableCellSetting.addProperty(key, pvalue);
+		Element cellListRoot=(Element) tableRow.get(0);
+		List<?> itemList =cellListRoot.elements("ItemSetting");
+		List<ItemSetting> list=new ArrayList<ItemSetting>();
+		for(Object item:itemList){
+			list.add(parseItemSetting((Element)item));
 		}
-		return tableCellSetting;
+		ItemSetting rowSetting=new ItemSetting();
+		rowSetting.setChildrenList(list);
+		return rowSetting;
 	}
 	
-	private ItemSetting parseTableColumnSetting(Element element){
-		if (!"TableColumnSetting".equals(element.attributeValue("type"))) {
-			return null;
-		}
-		ItemSetting tableColumnSetting=new ItemSetting();
-		tableColumnSetting.setType("TableColumnSetting");
-		List<?> childrens = element.elements();
+	protected ItemSetting parseItemSetting(Element element){
+		ItemSetting itemSetting=new ItemSetting();
+		String value = element.element("Value").getText();
+		String type = element.element("Type").getText();
+		itemSetting.setValue(value);
+		itemSetting.setType(type);
+		List<?> childrens = element.element("Style").elements();
 		for (Object children : childrens) {
 			String key = ((Element) children).getName();
 			String pvalue = ((Element) children).getText();
-			tableColumnSetting.addProperty(key, pvalue);
+			itemSetting.addProperty(key, pvalue);
 		}
-		return tableColumnSetting;
+		return itemSetting;
 	}
-
-	@Override
-	protected List<ItemSetting> getTableGroupHeaderSetting(Element root) {
-		return null;
-	}
-
-	@Override
-	protected List<ItemSetting> getTableGroupFooterSetting(Element root) {
-		return null;
-	}
+	
 }

@@ -1,6 +1,5 @@
 package com.efounder.report.parse;
 
-import java.util.List;
 import java.util.Map;
 
 import org.dom4j.Document;
@@ -50,17 +49,17 @@ public abstract class ConfigParseAbstract {
 	
 	protected abstract ItemSetting getPageFooterSettings(Element root);
 	
-	protected abstract List<ItemSetting> getTableColumnSettings(Element root);
+	protected abstract ItemSetting getTableColumnSettings(Element root);
 	
-	protected abstract List<ItemSetting> getTableHeaderSettings(Element root);
+	protected abstract ItemSetting getTableHeaderSettings(Element root);
 	
-	protected abstract List<ItemSetting> getTableDetailSettings(Element root);
+	protected abstract ItemSetting getTableDetailSettings(Element root);
 	
-	protected abstract List<ItemSetting> getTableFooterSettings(Element root);
+	protected abstract ItemSetting getTableFooterSettings(Element root);
 	
-	protected abstract List<ItemSetting> getTableGroupHeaderSetting(Element root);
+	protected abstract ItemSetting getTableGroupHeaderSetting(Element root);
 	
-	protected abstract List<ItemSetting> getTableGroupFooterSetting(Element root);
+	protected abstract ItemSetting getTableGroupFooterSetting(Element root);
 	
 	protected abstract Map<String, String> getPropertys(Element root);
 	

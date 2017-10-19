@@ -6,8 +6,10 @@ import com.efounder.report.parse.ScriptParse;
 public class HTMLCompiler implements ICompile {
 
 	private ScriptParse scriptParse;
+	private StringBuffer objCode=new StringBuffer();
 	@Override
 	public String compile(ReportSetting config, Object data) {
+		
 		return null;
 	}
 
