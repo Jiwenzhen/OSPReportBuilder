@@ -137,10 +137,15 @@ public class MyReportConfigParse extends ConfigParseAbstract {
 		if(element==null){
 			return null;
 		}
-		List<?> tableRow = element.elements("ItemSetting");
-		if(tableRow.isEmpty()){
-			return null;
-		}
+		//保证parseRowSetting方法的复用性。add by jiwenzhen at 2017年10月20日9:06:12
+		List<?> tableRow;
+        if(!element.elements("CaptionCellSettings").isEmpty()){
+        	tableRow = element.elements("CaptionCellSettings");
+        }else if(!element.elements("TableCellSettings").isEmpty()){
+        	tableRow = element.elements("TableCellSettings");
+        }else{
+        	return null;
+        }
 		Element cellListRoot=(Element) tableRow.get(0);
 		List<?> itemList =cellListRoot.elements("ItemSetting");
 		List<ItemSetting> list=new ArrayList<ItemSetting>();
@@ -154,15 +159,22 @@ public class MyReportConfigParse extends ConfigParseAbstract {
 	
 	protected ItemSetting parseItemSetting(Element element){
 		ItemSetting itemSetting=new ItemSetting();
-		String value = element.element("Value").getText();
-		String type = element.element("Type").getText();
-		itemSetting.setValue(value);
-		itemSetting.setType(type);
-		List<?> childrens = element.element("Style").elements();
-		for (Object children : childrens) {
-			String key = ((Element) children).getName();
-			String pvalue = ((Element) children).getText();
-			itemSetting.addProperty(key, pvalue);
+		//增加判断条件解决出现空指针的情况。add by jiwenzhen at 2017年10月20日9:06:12
+		if(element.element("Value") != null){
+			String value = element.element("Value").getText();
+			itemSetting.setValue(value);
+		}
+		if(element.element("Type") != null){
+			String type = element.element("Type").getText();
+			itemSetting.setType(type);
+		}
+		if(element.element("Style") != null){
+			List<?> childrens = element.element("Style").elements();
+			for (Object children : childrens) {
+				String key = ((Element) children).getName();
+				String pvalue = ((Element) children).getText();
+				itemSetting.addProperty(key, pvalue);
+			}
 		}
 		return itemSetting;
 	}
