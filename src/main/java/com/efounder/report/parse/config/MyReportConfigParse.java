@@ -137,10 +137,15 @@ public class MyReportConfigParse extends ConfigParseAbstract {
 		if(element==null){
 			return null;
 		}
-		List<?> tableRow = element.elements("ItemSetting");
-		if(tableRow.isEmpty()){
-			return null;
-		}
+		//保证parseRowSetting方法的复用性。add by jiwenzhen at 2017年10月20日9:06:12
+		List<?> tableRow;
+        if(!element.elements("CaptionCellSettings").isEmpty()){
+        	tableRow = element.elements("CaptionCellSettings");
+        }else if(!element.elements("TableCellSettings").isEmpty()){
+        	tableRow = element.elements("TableCellSettings");
+        }else{
+        	return null;
+        }
 		Element cellListRoot=(Element) tableRow.get(0);
 		List<?> itemList =cellListRoot.elements("ItemSetting");
 		List<ItemSetting> list=new ArrayList<ItemSetting>();
