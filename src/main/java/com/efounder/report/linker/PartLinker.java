@@ -6,8 +6,8 @@ import java.io.InputStream;
 
 import com.efounder.report.build.IBuilder;
 import com.efounder.report.build.ItextpdfBuilder;
+import com.efounder.report.compile.CompileAbstract;
 import com.efounder.report.compile.HTMLCompiler;
-import com.efounder.report.compile.ICompile;
 import com.efounder.report.parse.ConfigParseAbstract;
 import com.efounder.report.parse.ExpressionManager;
 import com.efounder.report.parse.ScriptParse;
@@ -26,7 +26,7 @@ public class PartLinker extends LinkerAbstract {
 
 	private ConfigParseAbstract configParse;
 	private ScriptParse scriptParse;
-	private ICompile compiler;
+	private CompileAbstract compiler;
 	private IBuilder builder;
 	@Override
 	public ConfigParseAbstract getConfigParse() {
@@ -65,7 +65,7 @@ public class PartLinker extends LinkerAbstract {
 	}
 
 	@Override
-	public ICompile getCompile() {
+	public CompileAbstract getCompile() {
 		if(compiler==null){
 			compiler=new HTMLCompiler();
 			compiler.setScriptParse(getScriptParse());

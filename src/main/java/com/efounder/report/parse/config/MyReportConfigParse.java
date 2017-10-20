@@ -159,22 +159,25 @@ public class MyReportConfigParse extends ConfigParseAbstract {
 	
 	protected ItemSetting parseItemSetting(Element element){
 		ItemSetting itemSetting=new ItemSetting();
-		//增加判断条件解决出现空指针的情况。add by jiwenzhen at 2017年10月20日9:06:12
+		String value = null;
+		String type = null;
 		if(element.element("Value") != null){
-			String value = element.element("Value").getText();
-			itemSetting.setValue(value);
+			value= element.element("Value").getText();
 		}
 		if(element.element("Type") != null){
-			String type = element.element("Type").getText();
-			itemSetting.setType(type);
+			type = element.element("Type").getText();
 		}
-		if(element.element("Style") != null){
-			List<?> childrens = element.element("Style").elements();
-			for (Object children : childrens) {
-				String key = ((Element) children).getName();
-				String pvalue = ((Element) children).getText();
-				itemSetting.addProperty(key, pvalue);
-			}
+		
+		itemSetting.setValue(value);
+		itemSetting.setType(type);
+		if(element.element("Style")==null){
+			return itemSetting;
+		}
+		List<?> childrens = element.element("Style").elements();
+		for (Object children : childrens) {
+			String key = ((Element) children).getName();
+			String pvalue = ((Element) children).getText();
+			itemSetting.addProperty(key, pvalue);
 		}
 		return itemSetting;
 	}
